@@ -51,7 +51,7 @@ const
   {Object creation/deletion (sent by system)}
   bqMayCreateObject = bqBaseSystem + 8;
   bqMayDeleteObject = bqBaseSystem + 9;
-  {$ENDIF} 
+  {$ENDIF}
   bqMaxSystem = bqBaseSystem + 9;
 
 type
@@ -199,7 +199,7 @@ type
     procedure EndFetchForAll(ObjectList: TBoldObjectList; MemberIdList: TBoldMemberIdList);
     procedure EndUpdateForAll(ObjectList: TBoldObjectList; Translationlist: TBoldIdTranslationlist);
     function StartUpdateForAll(ObjectList: TBoldObjectList): Boolean;
-    function CanEvaluateInPS(sOCL: string; aContext: TBoldElementTypeInfo = nil; const aVariableList: TBoldExternalVariableList = nil): Boolean; virtual; abstract;    
+    function CanEvaluateInPS(sOCL: string; aContext: TBoldElementTypeInfo = nil; const aVariableList: TBoldExternalVariableList = nil): Boolean; virtual; abstract;
   end;
 
   { TBoldAbstractRegionFactory }
@@ -545,7 +545,7 @@ type
     function GetReverseDeriveMethodForMember(MemberIndex: Integer): TBoldReverseDerive; overload; virtual;
     function MayDelete: Boolean; virtual;
     function MayUpdate: Boolean; virtual;
-    function GetDeletingOrDeletingByDiscard: Boolean;    
+    function GetDeletingOrDeletingByDiscard: Boolean;
     procedure PrepareDelete; virtual;
     procedure PrepareUpdate; virtual;
     procedure PrepareDiscard; virtual;
@@ -809,7 +809,7 @@ type
     property ProxedAttribute: TBoldAttribute read GetProxedAttribute implements IBoldNullableValue;
     function GetStringRepresentation(representation:integer): String; {$IFDEF BOLD_INLINE}inline;{$ENDIF}
     procedure SetStringRepresentation(Representation: integer; const NewValue: String); {$IFDEF BOLD_INLINE}inline;{$ENDIF}
-    function GetContentAsString: String; virtual;    
+    function GetContentAsString: String; virtual;
   end;
 
   { TBoldFailureReason }
@@ -1090,7 +1090,7 @@ type
   public
     function GetEnumerator: TBoldObjectListEnumerator;
     function GetLocatorEnumerator: TBoldObjectListLocatorEnumerator;
-    constructor InternalCreateClassList(System: TBoldSystem; ListTypeInfo: TBoldListTypeInfo);    
+    constructor InternalCreateClassList(System: TBoldSystem; ListTypeInfo: TBoldListTypeInfo);
     constructor CreateTypedList(ObjectClass: TBoldObjectClass);
     constructor CreateRootClassList;
     procedure Add(BoldObject: TBoldObject); {$IFDEF BOLD_INLINE}inline;{$ENDIF}
@@ -1202,7 +1202,7 @@ type
   TBoldAbstractObjectListController = class(TBoldListController)
   private
   protected
-    function GetDebugInfo: string; override;  
+    function GetDebugInfo: string; override;
     function GetObjectList: TBoldObjectList; {$IFDEF BOLD_INLINE}inline;{$ENDIF}
     property OwningObjectList: TBoldObjectList read GetObjectList;
     function GetProxy(Member: TBoldMember; Mode: TBoldDomainElementProxyMode): TBoldMember_Proxy; virtual; abstract;
@@ -1764,7 +1764,7 @@ var
 begin
   ObjectId := TBoldDefaultID.CreateWithClassID(0, false);
   try
-    ObjectId.AsInteger := StrToInt(Id);  
+    ObjectId.AsInteger := StrToInt(Id);
     result := GetLocatorByID(ObjectId);
   finally
     ObjectID.free;
@@ -2025,7 +2025,7 @@ begin
   IsDefault := False;
   FreeAndNil(fEvaluator);
   FreeAndNil(fClasses);
-  
+
   for i := 0 to length(fSystemProxyCache) -1 do
     fSystemProxyCache[TBoldDomainElementProxyMode(i)] := nil;
 
@@ -2090,7 +2090,7 @@ begin
   if Assigned(fClasses) then
   begin
     Result := TBoldObjectList(fClasses[index]);
-    Assert(Result is TBoldObjectList);    
+    Assert(Result is TBoldObjectList);
   end
   else
     Result := nil;
@@ -2605,7 +2605,7 @@ end;
 function TBoldObjectList.GetObjectListController: TBoldAbstractObjectListController;
 begin
   Result := TBoldAbstractObjectListController(ListController);
-  Assert(result is TBoldAbstractObjectListController);  
+  Assert(result is TBoldAbstractObjectListController);
 end;
 
 procedure TBoldSystem.ReceiveEventFromOwned(originator: TObject;
@@ -2990,7 +2990,7 @@ class procedure TBoldAbstractOldValueHandler.CopyMemberToValueSpace(BoldMember: 
 
   function GetMemberFromContents(const ObjectContents: IBoldObjectContents): IBoldValue;
   var
-    BoldSystemObjectContents: IBoldSystemObjectContents;  
+    BoldSystemObjectContents: IBoldSystemObjectContents;
   begin
     if Supports(ObjectContents, IBoldSystemObjectContents, BoldSystemObjectContents) then
       result := BoldSystemObjectContents.EnsureMemberAndGetValueByIndex(BoldMember)
@@ -3137,7 +3137,7 @@ begin
     end;
   end;
   Traverser.Free;
-                                           
+
 end;
 
 procedure TBoldSystem.IncrementDeletingObjectsDepth;
@@ -3310,7 +3310,7 @@ function TBoldObject.GetBoldMembers(index: Integer): TBoldMember;
   var
     ID: String;
   begin
-    if Assigned(FBoldObjectLocator) then    
+    if Assigned(FBoldObjectLocator) then
       ID := FBoldObjectLocator.BoldObjectID.AsString
     else
       ID := '(NoID)';
@@ -3359,7 +3359,7 @@ begin
     fDeriverArray[index] := Result;
     Member.HasDeriver := True;
   end;
-  
+
 end;
 
 function TBoldObject.SafeGetBoldMemberAssigned(Index: integer): Boolean;
@@ -4947,7 +4947,7 @@ var
         Result := true;
         for I := 0 to selfAsList.Count - 1 do
           if selfAsList[i] <> valueAsList[i] then
-            Result := false;         
+            Result := false;
       end;
     end
     else if IsEqual(oclValue) then
@@ -4959,7 +4959,7 @@ var
     else
       result := false;
   end;
-{$ENDIF}  
+{$ENDIF}
 begin
   DeriveMethod.Code := BoldmemberRTInfo.Derivemethod;
   if DeriveMethod.Code = nil then
@@ -4967,7 +4967,7 @@ begin
     DeriveMethod := TMethod(OwningObject.GetDeriveMethodForMember(Self));
     BoldmemberRTInfo.Derivemethod :=  DeriveMethod.Code;
     if BoldmemberRTInfo.Derivemethod = nil then
-      raise EBoldInternal.CreateFmt('Derivation method not found for %s, check model.', [displayName]);    
+      raise EBoldInternal.CreateFmt('Derivation method not found for %s, check model.', [displayName]);
   end
   else
     DeriveMethod.Data := OwningObject;
@@ -5271,7 +5271,7 @@ begin
   result := result and MayModify;
 {$IFNDEF BOLD_NO_QUERIES}
     result := result and SendQuery(bqMayModify, [], nil);
-{$ENDIF}    
+{$ENDIF}
 end;
 
 function TBoldMember.CanUpdate: Boolean;
@@ -5745,7 +5745,7 @@ begin
 end;
 
 function TBoldMember.IsEqualToValue(const Value: IBoldValue): Boolean;
-begin 
+begin
   raise Ebold.Create('TBoldMember.IsEqualToValue: not implemented for memberclass ' + ClassName);
 end;
 
@@ -5851,7 +5851,11 @@ function UnicodeCompareLen(CaseSensitive: Boolean; s1, s2 : string; n : Integer)
 const
    CSTR_EQUAL = 2;
 begin
-  if CaseSensitive then
+// {WARNING}!
+//  if CaseSensitive then
+//    Result:=CompareStringA(0, 0, PAnsiChar(s1), n, PAnsiChar(s2), n)-CSTR_EQUAL
+//  else
+//    Result:=CompareStringA(NORM_IGNORECASE, 0, PAnsiChar(s1), n, PAnsiChar(s2), n)-CSTR_EQUAL
     Result:=CompareStringEx(nil, 0, PWideChar(s1), n, PWideChar(s2), n, nil, nil, 0)-CSTR_EQUAL
   else
     Result:=CompareStringEx(nil, NORM_IGNORECASE, PWideChar(s1), n, PWideChar(s2), n, nil, nil, 0)-CSTR_EQUAL
@@ -5952,7 +5956,7 @@ begin
     raise EBoldInternal.CreateFmt('%s.MakeDbCurrent: Attribute belongs to object with internal ID', [BoldType.AsString]);
 end;
 
-class function TBoldAttribute.EitherIsNull(Attribute1, Attribute2: TBoldAttribute): Boolean; 
+class function TBoldAttribute.EitherIsNull(Attribute1, Attribute2: TBoldAttribute): Boolean;
 begin
   Result := Attribute1.IsNull or Attribute2.IsNull;
 end;
@@ -7442,7 +7446,7 @@ end;
 
 function TBoldList.GetLast: TBoldElement;
 begin
-  if empty then  
+  if empty then
     result := nil
   else
     result := Elements[count-1];
@@ -7585,7 +7589,7 @@ function TBoldMemberList.GetBoldMember(index: Integer): TBoldMember;
 begin
   EnsureContentsCurrent;
   Result := TBoldMember(Elements[index]);
-  Assert(Result is TBoldMember);  
+  Assert(Result is TBoldMember);
 end;
 
 procedure TBoldMemberList.SetBoldMember(index: Integer; Value: TBoldMember);
@@ -7716,7 +7720,7 @@ begin
     begin
       result := true;
       exit;
-    end;  
+    end;
 end;
 
 procedure TBoldMemberList.SetCapacity(const Value: integer);
@@ -8341,7 +8345,7 @@ function TBoldObjectList.GetByIndexAndSubscribe(MemberList: TBoldMemberList; Sub
 var
   Locator: TBoldObjectLocator;
 begin
-  EnsureContentsCurrent; //PATCH - Needs to call makedbcurrent or calculate derivied link if invalid!!! 
+  EnsureContentsCurrent; //PATCH - Needs to call makedbcurrent or calculate derivied link if invalid!!!
   BoldClearLastFailure;
   if not CanRead(nil) then
     BoldRaiseLastFailure(self, 'GetByIndex', '');
@@ -8925,7 +8929,7 @@ end;
 function TBoldAbstractObjectListController.GetObjectList: TBoldObjectList;
 begin
   result := TBoldObjectList(inherited OwningList);
-  Assert(result is TBoldObjectList);  
+  Assert(result is TBoldObjectList);
 end;
 
 function TBoldAbstractObjectListController.HandlesAtTime: Boolean;
@@ -9155,7 +9159,7 @@ function TBoldObjectReferenceController.GetStreamName: string;
 begin
   result := BoldContentName_ObjectIdRef;
 end;
-                                                                
+
 procedure TBoldObjectReferenceController.MakeDbCurrent;
 begin
   raise EBoldInternal.CreateFmt('%s.MakeDBcurrent: This is only possible for link-controllers', [ClassName]);
@@ -9554,7 +9558,7 @@ var
   ObjectLocator: TBoldObjectLocator;
 begin
   ObjectLocator := ProxedSystem.GetEnsuredLocatorById(ObjectId);
-  if not ObjectLocator.BoldObjectID.TopSortedIndexExact and 
+  if not ObjectLocator.BoldObjectID.TopSortedIndexExact and
     ObjectId.TopSortedIndexExact then
     ProxedSystem.Locators.UpdateID(ObjectLocator, ObjectId);
 end;
@@ -9790,7 +9794,7 @@ end;
 function TBoldLocatorListTraverser.GetLocator: TBoldObjectLocator;
 begin
   result := TBoldObjectLocator(item);
-  Assert(result is TBoldObjectLocator);  
+  Assert(result is TBoldObjectLocator);
 end;
 
 function TBoldSystemLocatorList.CreateTraverser: TBoldLocatorListTraverser;
@@ -9821,7 +9825,7 @@ begin
   if Subscribe then
     DerivedMember.DeriveMember(Self)
   else
-    DerivedMember.DeriveMember(nil);  
+    DerivedMember.DeriveMember(nil);
 end;
 
 procedure TBoldMemberDeriver.DoNotifyOutOfDate;

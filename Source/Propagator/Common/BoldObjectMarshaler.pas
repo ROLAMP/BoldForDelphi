@@ -73,7 +73,9 @@ end;
 
 function TBoldObjectMarshaler.UnMarshalObject(out Obj): boolean;
 var
-  p: {$IFDEF BOLD_DELPHI13_OR_LATER}LargeUInt{$ELSE}int64{$ENDIF};
+//XE5 == DELPHI19
+//p: {$IFDEF BOLD_DELPHI13_OR_LATER}LargeUInt{$ELSE}int64{$ENDIF};
+  p: {$IFDEF BOLD_DELPHI20_OR_LATER}LargeUInt{$ELSE}int64{$ENDIF};
 begin
   Result := false;
   try

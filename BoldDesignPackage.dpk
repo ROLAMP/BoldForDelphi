@@ -5,7 +5,7 @@ package BoldDesignPackage;
 {$ALIGN 8}
 {$ASSERTIONS ON}
 {$BOOLEVAL OFF}
-{$DEBUGINFO OFF}
+{$DEBUGINFO ON}
 {$EXTENDEDSYNTAX ON}
 {$IMPORTEDDATA ON}
 {$IOCHECKS ON}
@@ -42,7 +42,7 @@ requires
 
 contains
   BoldExternalPersistenceHandlesReg in 'Source\Persistence\ExternalPersistence\BoldExternalPersistenceHandlesReg.pas',
-  BoldAction in 'Source\BoldAwareGUI\Actions\BoldAction.pas',
+  BoldAction in 'Source\BoldAwareGUI\Actions\BoldActions.pas',
   BoldAwareGuiReg in 'Source\BoldAwareGUI\IDE\BoldAwareGuiReg.pas',
   BoldHandleReg in 'Source\Handles\IDE\BoldHandleReg.pas',
   BoldUMLModelEditReg in 'Source\UMLModel\Ide\BoldUMLModelEditReg.pas',

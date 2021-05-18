@@ -15,7 +15,7 @@ uses
   StdCtrls,
   BoldSystemRT,
   BoldElements,
-  ImgList, Menus, System.ImageList;
+  ImgList, Menus; //, System.ImageList;
 
 type
   TNodeType = (ntClass, ntClasses, ntAttributes, ntList, ntAttribute, ntClassList,

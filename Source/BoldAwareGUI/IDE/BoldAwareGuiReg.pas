@@ -54,10 +54,10 @@ uses
   BoldMemo,
   BoldTreeView,
   BoldXCVTreeView,
+  BoldActions,
   BoldImage,
   BoldComboBox,
   BoldPageControl,
-  BoldAction,
   BoldIDEConsts;
 
 {$R BoldAwareGUIReg.res}
@@ -172,10 +172,7 @@ end;
 
 procedure RegisterActionsInDelphi;
 begin
-  RegisterActions(BOLDACTIONGROUPNAME,
-                  [
-                   TBoldAction
-                  ], nil);
+  RegisterActions(BOLDACTIONGROUPNAME, [TBoldAction], nil);
 end;
 
 
