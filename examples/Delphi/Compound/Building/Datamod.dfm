@@ -366,7 +366,6 @@ object DataModule1: TDataModule1
   end
   object BoldSystemHandle1: TBoldSystemHandle
     IsDefault = True
-    AutoActivate = True
     SystemTypeInfoHandle = BoldSystemTypeInfoHandle1
     Active = False
     PersistenceHandle = BoldPersistenceHandleDB1

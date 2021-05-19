@@ -75,7 +75,7 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
-        <DCC_UnitSearchPath>$(BDS)\bin;$(BoldDelphi)\win32\debug;$(BDSLIB)\win32\debug;$(BoldDelphi);$(BoldDelphi)\Source\Common\Include;$(BoldDelphi)\SourceEx;$(BDS)\source\ToolsAPI-;.\win32\debug;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>$(BDS)\bin;$(BDSLIB)\win32\debug;$(BoldDelphi)\win32\debug;$(BoldDelphi)\Source\UMLModel\Core;$(BoldDelphi)\Source\Common\Include;$(BoldDelphi)\Source\Common\UtilsGUI;$(BoldDelphi)\Source\ObjectSpace\UtilsGUI;$(BoldDelphi)\Source\Common\Support;$(BoldDelphi)\SourceEx;$(BoldDelphi)\Source\UMLModel\Editor;$(BDS)\source\ToolsAPI-;.\win32\debug;$(BoldDelphi)\Source\UMLModel\Plugins;$(BoldDelphi)\Source\Common\Logging;$(BoldDelphi)\Source\Samples\SystemDebugger;$(BoldDelphi)\Source\BoldAwareGUI\FormGen;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>

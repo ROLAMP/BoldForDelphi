@@ -46,7 +46,7 @@ uses
   BoldAction, BoldHandle, BoldPersistenceHandle,
   BoldPersistenceHandlePassthrough, BoldPersistenceHandlePTWithModel,
   BoldAbstractExternalPersistenceHandle, BoldAbstractPartiallyExternalPH,
-  BoldExternalPersistenceHandleEventDriven, BoldActions;
+  BoldExternalPersistenceHandleEventDriven;
 
 type
   Tallform = class(TForm)
