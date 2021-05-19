@@ -70,7 +70,8 @@ begin
   fUDPClient := TIdUDPClient.Create(Self);
   fUDPServer := TIdUDPServer.Create(Self);
   fUDPClient.BroadcastEnabled := True;
-  fUDPServer.OnUDPRead := InternalUDPRead; //Fix
+  //fUDPServer.OnUDPRead := InternalUDPRead; //Fix
+  //[dcc32 Error] BoldUDPModificationBroadcaster.pas(73): E2010 Incompatible types: 'TIdUDPListenerThread' and 'TObject'
 
   fUDPClient.Host := '255.255.255.255';
   fUDPClient.Port := 4098;

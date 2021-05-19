@@ -1,15 +1,17 @@
 program Bldown;
 
+uses
+  Forms,
+
+  datamod in 'Datamod.pas' {DataModule1: TDataModule},
+  mainform in 'Mainform.pas' {allform},
+  PersonAutoFormUnit in 'PersonAutoFormUnit.pas' {PersonAutoForm};
+  //PersonAutoFormUnit in 'examples\Delphi\Compound\Building\PersonAutoFormUnit.pas'  {PersonAutoForm};
+
 {%File 'Building.inc'}
 {%File 'Person.inc'}
 {%File 'ResidentialBuilding.inc'}
 {%File 'BuildingClasses_Interface.inc'}
-
-uses
-  Forms,
-  datamod in 'Datamod.pas' {DataModule1: TDataModule},
-  mainform in 'Mainform.pas' {allform},
-  PersonAutoFormUnit in 'PersonAutoFormUnit.pas' {PersonAutoForm};
 
 {$R *.RES}
 

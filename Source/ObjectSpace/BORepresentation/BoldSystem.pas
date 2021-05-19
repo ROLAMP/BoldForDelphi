@@ -5852,13 +5852,13 @@ const
    CSTR_EQUAL = 2;
 begin
 // {WARNING}!
-//  if CaseSensitive then
-//    Result:=CompareStringA(0, 0, PAnsiChar(s1), n, PAnsiChar(s2), n)-CSTR_EQUAL
-//  else
-//    Result:=CompareStringA(NORM_IGNORECASE, 0, PAnsiChar(s1), n, PAnsiChar(s2), n)-CSTR_EQUAL
-    Result:=CompareStringEx(nil, 0, PWideChar(s1), n, PWideChar(s2), n, nil, nil, 0)-CSTR_EQUAL
+  if CaseSensitive then
+    Result:=CompareStringA(0, 0, PAnsiChar(s1), n, PAnsiChar(s2), n)-CSTR_EQUAL
   else
-    Result:=CompareStringEx(nil, NORM_IGNORECASE, PWideChar(s1), n, PWideChar(s2), n, nil, nil, 0)-CSTR_EQUAL
+    Result:=CompareStringA(NORM_IGNORECASE, 0, PAnsiChar(s1), n, PAnsiChar(s2), n)-CSTR_EQUAL
+//    Result:=CompareStringEx(nil, 0, PWideChar(s1), n, PWideChar(s2), n, nil, nil, 0)-CSTR_EQUAL
+//  else
+//    Result:=CompareStringEx(nil, NORM_IGNORECASE, PWideChar(s1), n, PWideChar(s2), n, nil, nil, 0)-CSTR_EQUAL
 end;
 
 function UnicodeCompareText(CaseSensitive: Boolean; const s1, s2 : UnicodeString) : Integer;

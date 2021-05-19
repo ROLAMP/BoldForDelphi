@@ -35,7 +35,6 @@ uses
   BoldLabel,
   BoldListBox,
   BoldHandleAction,
-  BoldActions,
   BoldDBActions,
   BoldAFP,
   BoldReferenceHandle,
@@ -43,7 +42,11 @@ uses
   BoldDebugActions,
   BoldUndoActions,
   BoldCaptionController,
-  BoldAction;
+  BoldActions,
+  BoldAction, BoldHandle, BoldPersistenceHandle,
+  BoldPersistenceHandlePassthrough, BoldPersistenceHandlePTWithModel,
+  BoldAbstractExternalPersistenceHandle, BoldAbstractPartiallyExternalPH,
+  BoldExternalPersistenceHandleEventDriven, BoldActions;
 
 type
   Tallform = class(TForm)
@@ -155,6 +158,7 @@ type
     BoldLogFormAction1: TBoldLogFormAction;
     ListBox1: TListBox;
     Label8: TLabel;
+    BoldExternalPersistenceHandleEventDriven1: TBoldExternalPersistenceHandleEventDriven;
     procedure newBuildingClick(Sender: TObject);
     procedure DeleteCurrentObject(Sender: TObject);
     procedure NewPersonClick(Sender: TObject);

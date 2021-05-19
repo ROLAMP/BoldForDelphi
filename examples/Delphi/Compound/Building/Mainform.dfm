@@ -1003,4 +1003,9 @@ object allform: Tallform
     Left = 448
     Top = 184
   end
+  object BoldExternalPersistenceHandleEventDriven1: TBoldExternalPersistenceHandleEventDriven
+    Config = <>
+    Left = 296
+    Top = 304
+  end
 end

@@ -54,7 +54,8 @@ uses
   BoldMemo,
   BoldTreeView,
   BoldXCVTreeView,
-  BoldActions,
+  BoldAction,     //RIL: Added
+  //BoldActions,  //RIL: Removed
   BoldImage,
   BoldComboBox,
   BoldPageControl,

@@ -227,6 +227,8 @@ type
   private
     function GetTransaction: TFDTransaction;
     function GetUpdateTransaction: TFDTransaction;
+    function GetDatabaseNamePart(ParamString: string): string;
+    function GetDatabaseNameAsParamsString(DatabaseName: string): string;
     procedure SetTransaction(const Value: TFDTransaction);
     procedure SetUpdateTransaction(const Value: TFDTransaction);
   protected
@@ -761,7 +763,11 @@ function TBoldFireDACTable.ParamByName(const Value: string): IBoldParameter;
 var
   lFDParam: TFireDacParam;
 begin
+{$IFDEF BOLDDELPHGI13_OR_LATER} //RIL
   lFDParam := FDTable.Params.ParamByName(Value);
+{$ELSE}
+  lFDParam := FDTable.ParamByName(Value);
+{$ENDIF}
   Result := TBoldFireDACParameter.Create(lFDParam, Self)
 end;
 
@@ -792,10 +798,18 @@ var
 begin
   lGuard := TBoldGuard.Create(lTempList);
   lTempList := TStringList.Create;
+{$IFDEF  BOLDDELPHGI13_OR_LATER}
   if ShowSystemTables then
     FDConnection.GetTableNames(FDConnection.Params.Database,'','',lTempList, [osMy, osSystem, osOther], [tkTable])
   else
     FDConnection.GetTableNames(FDConnection.Params.Database,'','',lTempList, [osMy, osOther], [tkTable]);
+{$ELSE}
+  //RIL Fix for XE5
+  if ShowSystemTables then
+    FDConnection.GetTableNames(GetDatabaseNameAsParamsString(FDConnection.Params.Strings[0]),'','',lTempList, [osMy, osSystem, osOther], [tkTable])
+  else
+    FDConnection.GetTableNames(GetDatabaseNameAsParamsString(FDConnection.Params.Strings[0]),'','',lTempList, [osMy, osOther], [tkTable]);
+{$ENDIF}
 
   // convert from fully qualified names in format: database.catalogue.table to just table name
   for i := 0 to lTempList.Count - 1 do
@@ -913,6 +927,35 @@ begin
   FDConnection.Close;
 end;
 
+{$IFNDEF BOLDDELPHGI13_OR_LATER}
+function TBoldFireDACConnection.GetDatabaseNamePart(ParamString: string): string;
+//RIL
+// Fixes access to the Database name-part of the value-pair in the
+// Params.Strings property which is used XE5. Later versions has
+// direct-access to this string via the Params.Database property.
+  var splitter: TStringList;
+  var vDatabaseName: string;
+begin
+  try
+    splitter := TStringList.Create;
+    splitter.Delimiter := '=';
+    splitter.DelimitedText := ParamString;
+    // ENSURE THAT I UNDERSTOOD THIS PART CORRECTLY //RIL
+    Assert(splitter.Count = 2,
+      'The fix to split Database property was not necessary.\n' +
+      'Remove this split and corresponding insertions in assignment. //RIL');
+    Result := splitter.Strings[1];
+  finally
+    splitter.Free;
+  end;
+end;
+
+function TBoldFireDACConnection.GetDatabaseNameAsParamsString(DatabaseName: string): string;
+begin
+  Result := 'Database=' + DatabaseName;
+end;
+{$ENDIF}
+
 procedure TBoldFireDACConnection.CreateDatabase;
 var
   vQuery: IBoldExecQuery;
@@ -927,8 +970,15 @@ const
   cGenerateDatabaseInterbaseSQL = 'Create Database ''%s'' user ''%s'' password ''%s''';
   cGenerateDatabaseSQLServer = 'USE master;' + BOLDCRLF + 'GO' + BOLDCRLF + ' Create Database %s';
 begin
+{$IFDEF BOLDDELPHGI13_OR_LATER} //RIL
   vDatabaseName := LowerCase(FDConnection.Params.Database);
   FDConnection.Params.Database := ''; // need to clear this to connect succesfully
+{$ELSE}
+  // Fix for XE5
+  vDatabaseName := LowerCase(GetDatabaseNamePart(FDConnection.Params.Strings[0]));
+  FDConnection.Params.Strings[0] := ''; // need to clear this to connect succesfully
+{$ENDIF}
+
   vScript := TFDScript.Create(nil);
   sl := TStringList.Create;
   try
@@ -937,7 +987,11 @@ begin
     vScript.ExecuteScript(sl);
     FDConnection.Close;
   finally
+  {$IFDEF BOLDDELPHGI13_OR_LATER} //RIL
     FDConnection.Params.Database := vDatabaseName;
+  {$ELSE}
+    FDConnection.Params.Strings[0] := GetDatabaseNameAsParamsString(vDatabaseName);
+  {$ENDIF}
     vScript.free;
     sl.free;
   end;
