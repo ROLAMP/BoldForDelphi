@@ -853,8 +853,10 @@ var
   anObject: IBoldObjectContents;
   i, j: Integer;
 
+{$IFNDEF BOLDDELPHGI13_OR_LATER}
   FakeBoldClientID: TBoldClientID; //RIL
   FakeDate: TDateTime;             //RIL
+{$ENDIF}
 begin
   for i := IdList.Count-1 downto 0 do
   begin
@@ -875,24 +877,21 @@ begin
       anObject.BoldPersistenceState := bvpsModified;
     end;
   end;
+{$IFDEF BOLDDELPHGI13_OR_LATER}
+  PController.PMUpdate(IdList, ValueSpace, nil, nil, TranslationList, TimeStamp, 0);
+{$ENDIF}
+  FakeDate := Now;       //RIL Possibly sensible? 
   FakeBoldClientID := 0; //RIL Probably very bad!
-  FakeDate := Now;       //RIL Possibly sensible?
   PController.PMUpdate(IdList, ValueSpace, nil, nil, TranslationList,
                        TimeStamp, FakeDate, FakeBoldClientID);
-  (*
-  //  [dcc32 Error] BoldOLLEDistributableObjectHandlers.pas(875): //RIL
+{$ENDIF}
+  { //RIL
+  //  [dcc32 Error] BoldOLLEDistributableObjectHandlers.pas(875): 
       "E2033 Types of actual and formal var parameters must be identical"
-
-      Target method signature:
-                       PMUpdate(IdList: TBoldObjectIdList;
-                       ValueSpace: IBoldValueSpace;
-                       Old_Values: IBoldValueSpace;           // = nil
-                       Precondition: TBoldUpdatePrecondition; // = nil
-                       TranslationList: TBoldIdTranslationList;
-                       var TimeStamp: TBoldTimeStampType;
-                       var TimeOfLatestUpdate: TDateTime;     // = 0
-                       BoldClientID: TBoldClientID);          // <<<-- missing!
-  *)
+      Target method signature, 2 additions for XE5:
+	       var TimeOfLatestUpdate: TDateTime;     // = 0
+	       BoldClientID: TBoldClientID);          // <<<-- missing!
+  }
 end;
 
 procedure TBoldDistributableObjectHandler.LockAndFreeObjects(IdList,

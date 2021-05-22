@@ -7,8 +7,8 @@ object DataModule1: TDataModule1
     Boldify.EnforceDefaultUMLCase = False
     Boldify.DefaultNavigableMultiplicity = '0..1'
     Boldify.DefaultNonNavigableMultiplicity = '0..*'
-    Left = 32
-    Top = 8
+    Left = 120
+    Top = 16
     Model = (
       'VERSION 19'
       '(Model'
@@ -345,101 +345,76 @@ object DataModule1: TDataModule1
     OnSubscribe = IsRichRendererSubscribe
     OnGetAsCheckBoxState = IsRichRendererGetAsCheckBoxState
     Left = 32
-    Top = 96
+    Top = 128
   end
   object IsRichFilter: TBoldFilter
     OnSubscribe = IsRichFilterSubscribe
     OnFilter = IsRichFilterFilter
     Left = 32
-    Top = 168
+    Top = 200
   end
   object NameComparer: TBoldComparer
     OnSubscribe = NameComparerSubscribe
     OnCompare = NameComparerCompare
     Left = 128
-    Top = 168
+    Top = 200
   end
   object NegativeRedRenderer: TBoldAsStringRenderer
     OnSetFont = NegativeRedRendererSetFont
     Left = 248
-    Top = 96
+    Top = 168
   end
   object BoldSystemHandle1: TBoldSystemHandle
     IsDefault = True
     SystemTypeInfoHandle = BoldSystemTypeInfoHandle1
     Active = False
     PersistenceHandle = BoldPersistenceHandleDB1
-    Left = 128
-    Top = 8
+    Left = 216
+    Top = 16
   end
   object BoldUMLRoseLink1: TBoldUMLRoseLink
     FileName = 'D:\bold\BfD\examples\Delphi\Compound\Building\Building.mdl'
     BoldModel = BoldModel1
-    Left = 260
-    Top = 164
+    Left = 28
+    Top = 20
   end
   object BoldSystemTypeInfoHandle1: TBoldSystemTypeInfoHandle
     BoldModel = BoldModel1
     Left = 72
-    Top = 248
+    Top = 280
   end
   object BoldPlaceableAFP1: TBoldPlaceableAFP
     OnGetFormClass = BoldPlaceableAFP1GetFormClass
     OnRetrieveHandle = BoldPlaceableAFP1RetrieveHandle
     Left = 248
-    Top = 240
+    Top = 272
   end
   object BoldPersistenceHandleDB1: TBoldPersistenceHandleDB
     BoldModel = BoldModel1
     ClockLogGranularity = '0:0:0.0'
     DatabaseAdapter = BoldDatabaseAdapterFireDAC1
-    Left = 256
-    Top = 24
+    Left = 344
+    Top = 16
   end
   object BoldDatabaseAdapterFireDAC1: TBoldDatabaseAdapterFireDAC
     SQLDatabaseConfig.DefaultSystemMapper = '<Default>'
     SQLDatabaseConfig.DefaultObjectMapper = '<Default>'
-    SQLDatabaseConfig.IfTemplate = 'IF <Condition> BEGIN <SQLStatement> END'
-    SQLDatabaseConfig.ColumnExistsTemplate = 
-      'SELECT * FROM SYS.COLUMNS WHERE UPPER(NAME) = UPPER(N'#39'<ColumnNam' +
-      'e>'#39') AND OBJECT_ID = OBJECT_ID(UPPER(N'#39'<TableName>'#39'))'
-    SQLDatabaseConfig.TableExistsTemplate = 'SELECT * FROM SYS.TABLES WHERE UPPER(NAME)=UPPER('#39'<TableName>'#39')'
-    SQLDatabaseConfig.IndexExistsTemplate = 
-      'SELECT NAME FROM SYS.INDEXES WHERE UPPER(NAME)=UPPER('#39'<IndexName' +
-      '>'#39') AND OBJECT_ID = OBJECT_ID(UPPER(N'#39'<TableName>'#39'))'
-    SQLDatabaseConfig.IndexColumnExistsTemplate = 
-      'SELECT IND.NAME FROM SYS.INDEXES IND INNER JOIN SYS.INDEX_COLUMN' +
-      'S IC ON  IND.OBJECT_ID = IC.OBJECT_ID AND IND.INDEX_ID = IC.INDE' +
-      'X_ID INNER JOIN SYS.COLUMNS COL ON IC.OBJECT_ID = COL.OBJECT_ID ' +
-      'AND IC.COLUMN_ID = COL.COLUMN_ID WHERE IND.OBJECT_ID = OBJECT_ID' +
-      '(UPPER(N'#39'<TableName>'#39')) AND UPPER(COL.NAME) = UPPER('#39'<IndexColum' +
-      'nName>'#39')'
-    SQLDatabaseConfig.ColumnTypeForDate = 'DATETIME'
-    SQLDatabaseConfig.ColumnTypeForTime = 'DATETIME'
-    SQLDatabaseConfig.ColumnTypeForDateTime = 'DATETIME'
-    SQLDatabaseConfig.ColumnTypeForBlob = 'VARBINARY(MAX)'
-    SQLDatabaseConfig.ColumnTypeForFloat = 'DECIMAL (28,10)'
-    SQLDatabaseConfig.ColumnTypeForCurrency = 'DECIMAL (28,10)'
+    SQLDatabaseConfig.ColumnTypeForDate = 'DATE'
+    SQLDatabaseConfig.ColumnTypeForTime = 'TIME'
+    SQLDatabaseConfig.ColumnTypeForDateTime = 'TIMESTAMP'
+    SQLDatabaseConfig.ColumnTypeForBlob = 'BYTEA'
+    SQLDatabaseConfig.ColumnTypeForFloat = 'NUMERIC'
+    SQLDatabaseConfig.ColumnTypeForCurrency = 'NUMERIC'
     SQLDatabaseConfig.ColumnTypeForString = 'VARCHAR(%d)'
     SQLDatabaseConfig.ColumnTypeForUnicodeString = 'NVARCHAR(%d)'
     SQLDatabaseConfig.ColumnTypeForText = 'VARCHAR(MAX)'
     SQLDatabaseConfig.ColumnTypeForUnicodeText = 'NVARCHAR(MAX)'
-    SQLDatabaseConfig.LongStringLimit = 4000
     SQLDatabaseConfig.ColumnTypeForInteger = 'INTEGER'
     SQLDatabaseConfig.ColumnTypeForSmallInt = 'SMALLINT'
     SQLDatabaseConfig.ColumnTypeForInt64 = 'BIGINT'
-    SQLDatabaseConfig.ColumnTypeForGUID = 'UNIQUEIDENTIFIER'
+    SQLDatabaseConfig.ColumnTypeForGUID = 'UUID'
     SQLDatabaseConfig.CreateDatabaseTemplate = 'CREATE DATABASE %s'
-    SQLDatabaseConfig.DropColumnTemplate = 
-      'DECLARE @CONSTRAINTNAME NVARCHAR(200) SELECT @CONSTRAINTNAME=OD.' +
-      'NAME   FROM   SYSOBJECTS OT, SYSCOLUMNS C, SYSOBJECTS OD   WHERE' +
-      '  UPPER(OT.NAME) = UPPER('#39'<TableName>'#39')   AND  OT.ID          = ' +
-      'C.ID   AND  UPPER(C.NAME)  = UPPER('#39'<ColumnName>'#39')   AND  C.CDEF' +
-      'AULT     = OD.ID IF @CONSTRAINTNAME IS NOT NULL   EXEC('#39'ALTER TA' +
-      'BLE <TableName> DROP CONSTRAINT '#39' + @CONSTRAINTNAME) IF EXISTS (' +
-      'SELECT * FROM SYSCOLUMNS WHERE ID=OBJECT_ID('#39'<TableName>'#39') AND U' +
-      'PPER(NAME)=UPPER('#39'<ColumnName>'#39')) EXEC('#39'ALTER TABLE <TableName> ' +
-      'DROP COLUMN <ColumnName>'#39')'
+    SQLDatabaseConfig.DropColumnTemplate = 'ALTER TABLE <TableName> DROP <ColumnName>'
     SQLDatabaseConfig.DropTableTemplate = 'DROP TABLE <TableName>'
     SQLDatabaseConfig.IndexInfoTemplate = 
       'SELECT IND.NAME INDEXNAME, IND.IS_PRIMARY_KEY ISPRIMARY, IND.IS_' +
@@ -449,10 +424,10 @@ object DataModule1: TDataModule1
       '_ID = COL.OBJECT_ID AND IC.COLUMN_ID = COL.COLUMN_ID WHERE UPPER' +
       '(OBJECT_NAME(IND.OBJECT_ID))=UPPER('#39'<TableName>'#39') ORDER BY INDEX' +
       'NAME, INDEX_COLUMN_ID'
-    SQLDatabaseConfig.DropIndexTemplate = 'DROP INDEX <TableName>.<IndexName>'
+    SQLDatabaseConfig.DropIndexTemplate = 'DROP INDEX <IndexName>'
     SQLDatabaseConfig.EvolveDropsUnknownIndexes = True
-    SQLDatabaseConfig.MaxBatchQueryLength = 67108864
-    SQLDatabaseConfig.MaxBatchQueryParams = 2000
+    SQLDatabaseConfig.MaxDbIdentifierLength = 63
+    SQLDatabaseConfig.MaxIndexNameLength = 63
     SQLDatabaseConfig.BatchQuerySeparator = ';'
     SQLDatabaseConfig.MultiRowInsertLimit = 1000
     SQLDatabaseConfig.SQLforNull = 'NULL'
@@ -461,53 +436,41 @@ object DataModule1: TDataModule1
     SQLDatabaseConfig.SupportsConstraintsInCreateTable = True
     SQLDatabaseConfig.SupportsStringDefaultValues = True
     SQLDatabaseConfig.DBGenerationMode = dbgQuery
-    SQLDatabaseConfig.DatabaseCaseSensitiveTemplate = 'EXECUTE sp_helpsort'
     SQLDatabaseConfig.ReservedWords.Strings = (
-      'ACTIVE, ADD, ALL, AFTER, ALTER'
-      'AND, ANY, AS, ASC, ASCENDING,'
-      'AT, AUTO, AUTOINC, AVG, BASE_NAME'
-      'BEFORE, BEGIN, BETWEEN, BLOB, BOOLEAN,'
-      'BOTH, BY, BYTES, CACHE, CAST, CHAR'
-      'CHARACTER, CHECK, CHECK_POINT_LENGTH, COLLATE,'
-      'COLUMN, COMMIT, COMMITTED, COMPUTED'
-      'CONDITIONAL, CONSTRAINT, CONTAINING, COUNT, CREATE, CSTRING,'
-      'CURRENT, CURSOR, DATABASE, DATE, DAY'
-      'DEBUG, DEC, DECIMAL, DECLARE, DEFAULT,'
-      'DELETE, DESC, DESCENDING, DISTINCT, DO'
-      'DOMAIN, DOUBLE, DROP, ELSE, END,'
-      'ENTRY_POINT, ESCAPE, EXCEPTION, EXECUTE'
-      'EXISTS, EXIT, EXTERNAL, EXTRACT, FILE, FILTER,'
-      'FLOAT, FOR, FOREIGN, FROM, FULL, FUNCTION'
-      'GDSCODE, GENERATOR, GEN_ID, GRANT,'
-      'GROUP, GROUP_COMMIT_WAIT_TIME, HAVING'
-      'HOUR, IF, IN, INT, INACTIVE, INDEX, INNER,'
-      'INPUT_TYPE, INSERT, INTEGER, INTO'
-      'IS, ISOLATION, JOIN, KEY, LONG, LENGTH,'
-      'LOGFILE, LOWER, LEADING, LEFT, LEVEL'
-      'LIKE, LOG_BUFFER_SIZE, MANUAL, MAX, MAXIMUM_SEGMENT,'
-      'MERGE, MESSAGE, MIN, MINUTE, MODULE_NAME'
-      'MONEY, MONTH, NAMES, NATIONAL, NATURAL,'
-      'NCHAR, NO, NOT, NULL, NUM_LOG_BUFFERS'
-      'NUMERIC, OF, ON, ONLY, OPTION,'
-      'OR, ORDER, OUTER, OUTPUT_TYPE, OVERFLOW'
-      'PAGE_SIZE, PAGE, PAGES, PARAMETER, PASSWORD,'
-      'PLAN, POSITION, POST_EVENT, PRECISION'
       
-        'PROCEDURE, PROTECTED, PRIMARY, PRIVILEGES, RAW_PARTITIONS, RDB$D' +
-        'B_KEY,'
-      'READ, REAL, RECORD_VERSION, REFERENCES'
-      'RESERV, RESERVING, RETAIN, RETURNING_VALUES, RETURNS, REVOKE,'
-      'RIGHT, ROLE, ROLLBACK, SECOND, SEGMENT'
-      'SELECT, SET, SHARED, SHADOW, SCHEMA, SINGULAR,'
-      'SIZE, SMALLINT, SNAPSHOT, SOME, SORT'
-      'SQLCODE, STABILITY, STARTING, STARTS, STATISTICS,'
-      'SUB_TYPE, SUBSTRING, SUM, SUSPEND, TABLE'
-      'THEN, TIME, TIMESTAMP, TIMEZONE_HOUR, TIMEZONE_MINUTE,'
-      'TO, TRAILING, TRANSACTION, TRIGGER, TRIM'
-      'UNCOMMITTED, UNION, UNIQUE, UPDATE, UPPER,'
-      'USER, VALUE, VALUES, VARCHAR, VARIABLE'
-      'VARYING, VIEW, WAIT, WHEN, WHERE,'
-      'WHILE, WITH, WORK, WRITE, YEAR')
+        'ALL, ANALYSE, AND, ANY, ARRAY, AS, ASC, ASYMMETRIC, AUTHORIZATIO' +
+        'N,'
+      
+        'BETWEEN, BINARY, BOOLEAN, BOTH, CASE, CAST, CHAR, CHARACTER, CHE' +
+        'CK,'
+      
+        'CMIN, COALESCE, COLLATE, COLUMN, CONSTRAINT, CONVERT, CREATE, CR' +
+        'OSS,'
+      'CURRENT_DATE, CURRENT_ROLE, CURRENT_TIME, CURRENT_TIMESTAMP,'
+      'CURRENT_USER, DEC, DECIMAL, DEFAULT, DEFERRABLE, SEC, ELSE, END,'
+      
+        'EXCEPT, EXISTS, EXTRACT, FALSE, FLOAT, FOR, FOREIGN, FREEZE, FRO' +
+        'M,'
+      
+        'FULL, GRANT, GREATEST, GROUP, HAVING, ILIKE, IN, INITIALLY, INNE' +
+        'R,'
+      
+        'INOUT, INT, INTEGER, INTERSECT, INTERVAL, INTO, IS, ISNULL, JOIN' +
+        ','
+      'LEADING, LEAST, LEFT, LIKE, LIMIT, LOCALTIME, LOCALTIMESTAMP,'
+      'NATIONAL, NATURAL, NCHAR, NEW, NONE, NOT, NOTNULL, NULL, NULLIF,'
+      
+        'NUMERIC, OFF, OFFSET, OLD, ON, ONLY, OR, ORDER, OUT, OUTER, OVER' +
+        'LAPS,'
+      'OVERLAY, PLI, POSITION, PRECISION, PRIMARY, REAL, REFERENCES,'
+      'RETURNING, RIGHT, ROW, SELECT, SESSION_USER, SETOF, SIMILAR,'
+      
+        'SMALLINT, SOME, SUBSTRING, SYMMETRIC, TABLE, THEN, TIME, TIMESTA' +
+        'MP,'
+      
+        'TOP_LEVEL_COUNT, TRAILING, TREAT, TRIM, TRUE, UNION, UNIQUE, USE' +
+        'R,'
+      'USING, VALUES, VARCHAR, VERBOSE, WHEN, WHERE')
     SQLDatabaseConfig.StoreEmptyStringsAsNULL = False
     SQLDatabaseConfig.SystemTablePrefix = 'BOLD'
     SQLDatabaseConfig.QuoteLeftBracketInLike = False
@@ -519,25 +482,21 @@ object DataModule1: TDataModule1
     SQLDatabaseConfig.SqlScriptRollBackTransaction = 'ROLLBACK'
     CustomIndexes = <>
     Connection = FDConnection1
-    DatabaseEngine = dbeSQLServer
-    Left = 384
-    Top = 200
+    DatabaseEngine = dbePostgres
+    Left = 456
+    Top = 72
   end
   object FDConnection1: TFDConnection
+    ConnectionName = 'boldbuild_db'
     Params.Strings = (
-      'User_Name=sa'
-      'Password=masterkey'
-      'Server=DESKTOP-JJPVFK3'
-      'OSAuthent=Yes'
-      'ApplicationName=Enterprise/Architect/Ultimate'
-      'Workstation=DESKTOP-JJPVFK3'
-      'MARS=yes'
-      'Database=Buildings'
-      'DriverID=MSSQL')
+      'Database=boldbuild_db'
+      'User_Name=posgres'
+      'Password=lumon1te'
+      'Server=localhost'
+      'DriverID=PG')
     TxOptions.Isolation = xiRepeatableRead
-    LoginPrompt = False
-    Left = 384
-    Top = 256
+    Left = 456
+    Top = 24
   end
   object BoldConstraintValidatorOnModify: TBoldConstraintValidator
     StaticSystemHandle = BoldSystemHandle1
@@ -550,7 +509,7 @@ object DataModule1: TDataModule1
     ValidationMode = vmOnModify
     Enabled = True
     Left = 424
-    Top = 56
+    Top = 216
   end
   object BoldConstraintValidatorOnUpdate: TBoldConstraintValidator
     StaticSystemHandle = BoldSystemHandle1
@@ -567,6 +526,6 @@ object DataModule1: TDataModule1
     ValidationMode = vmPreUpdate
     Enabled = True
     Left = 424
-    Top = 128
+    Top = 264
   end
 end

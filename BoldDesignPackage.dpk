@@ -42,8 +42,8 @@ requires
 
 contains
   BoldExternalPersistenceHandlesReg in 'Source\Persistence\ExternalPersistence\BoldExternalPersistenceHandlesReg.pas',
-  BoldAction in 'Source\BoldAwareGUI\Actions\BoldAction.pas',  // FIX: Plural //RIL
-  BoldActions in 'Source\Handles\Actions\BoldActions.pas',  // FIX: Added //RIL
+  BoldAction in 'Source\BoldAwareGUI\Actions\BoldAction.pas',
+  BoldActions in 'Source\Handles\Actions\BoldActions.pas',
   BoldAwareGuiReg in 'Source\BoldAwareGUI\IDE\BoldAwareGuiReg.pas',
   BoldHandleReg in 'Source\Handles\IDE\BoldHandleReg.pas',
   BoldUMLModelEditReg in 'Source\UMLModel\Ide\BoldUMLModelEditReg.pas',
@@ -59,7 +59,6 @@ contains
   BoldComReg in 'Source\Common\IDECOM\BoldComReg.pas',
   BoldExternalObjectSpaceEventHandlerReg in 'Source\ObjectSpace\IDE\BoldExternalObjectSpaceEventHandlerReg.pas',
   BoldPersistenceNotifierReg in 'Source\Persistence\IDE\BoldPersistenceNotifierReg.pas',
-  //RIL BoldOLLEHandlesReg in 'Source\Extensions\OLLE\IDE\BoldOLLEHandlesReg.pas',
   BoldComPersistenceHandleReg in 'Source\Persistence\IDECOM\BoldComPersistenceHandleReg.pas',
   BoldPersistenceHandleReg in 'Source\Persistence\IDE\BoldPersistenceHandleReg.pas',
   BoldHTTPServerPersistenceHandlePassthroughReg in 'Source\Persistence\IDECOM\BoldHTTPServerPersistenceHandlePassthroughReg.pas',
